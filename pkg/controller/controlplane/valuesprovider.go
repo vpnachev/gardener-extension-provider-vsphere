@@ -507,7 +507,9 @@ func (vp *valuesProvider) getControlPlaneChartValues(
 	}
 
 	clusterId := cp.Namespace + "-" + vp.gardenId
-	csiResizerEnabled := cloudProfileConfig.CSIResizerDisabled == nil || !*cloudProfileConfig.CSIResizerDisabled
+	csiResizerEnabled := false
+	// for v2.0.0
+	// csiResizerEnabled := cloudProfileConfig.CSIResizerDisabled == nil || !*cloudProfileConfig.CSIResizerDisabled
 	values := map[string]interface{}{
 		"vsphere-cloud-controller-manager": map[string]interface{}{
 			"replicas":          extensionscontroller.GetControlPlaneReplicas(cluster, scaledDown, 1),
